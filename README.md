@@ -69,55 +69,70 @@ This project performs end-to-end analysis of SCADA (Supervisory Control and Data
 
 | Chart | Description |
 |-------|-------------|
-| ![Power Loss Distribution](images/P1.png) | Majority of power loss values are near zero; right-skewed with a small number of extreme loss events up to 3,600 kW |
-| ![Wind Speed vs Power Loss](images/P2.png) | Power loss increases with wind speed up to ~15 m/s, then stabilizes; negative values visible at low wind speeds (self-consumption) |
-| ![Active Power Distribution](images/P4.png) | Bimodal distribution — high frequency near 0 kW and at rated capacity ~3,500 kW |
-| ![Wind Speed vs Active Power](images/P5.png) | Classic S-curve power characteristic; clear cut-in (~4 m/s) and rated speed (~12 m/s) visible |
-| ![Wind Speed vs Theoretical Power](images/P6.png) | Smooth, clean S-curve confirming the theoretical power curve plateaus at 3,600 kW |
-| ![Actual vs Theoretical Power](images/P7.png) | Strong linear relationship (r=0.95); actual power consistently below theoretical across all output levels |
-| ![Monthly Power Generation](images/P8.png) | March and August peak; July lowest — clear seasonal production pattern |
-| ![Hourly Average Power](images/P9.png) | Midday dip in generation (8 AM–12 PM); stronger output in early morning and evening hours |
-| ![Correlation Matrix](images/P11.png) | Wind speed and theoretical curve strongly correlated with output; wind direction has near-zero impact |
+| ![Power Loss Distribution](Notebooks/images/P1.png) | Majority of power loss values are near zero; right-skewed with a small number of extreme loss events up to 3,600 kW |
+| ![Wind Speed vs Power Loss](Notebooks/images/P2.png) | Power loss increases with wind speed up to ~15 m/s, then stabilizes; negative values visible at low wind speeds (self-consumption) |
+| ![Active Power Distribution](Notebooks/images/P4.png) | Bimodal distribution — high frequency near 0 kW and at rated capacity ~3,500 kW |
+| ![Wind Speed vs Active Power](Notebooks/images/P5.png) | Classic S-curve power characteristic; clear cut-in (~4 m/s) and rated speed (~12 m/s) visible |
+| ![Wind Speed vs Theoretical Power](Notebooks/images/P6.png) | Smooth, clean S-curve confirming the theoretical power curve plateaus at 3,600 kW |
+| ![Actual vs Theoretical Power](Notebooks/images/P7.png) | Strong linear relationship (r=0.95); actual power consistently below theoretical across all output levels |
+| ![Monthly Power Generation](Notebooks/images/P8.png) | March and August peak; July lowest — clear seasonal production pattern |
+| ![Hourly Average Power](Notebooks/images/P9.png) | Midday dip in generation (8 AM–12 PM); stronger output in early morning and evening hours |
+| ![Correlation Matrix](Notebooks/images/P11.png) | Wind speed and theoretical curve strongly correlated with output; wind direction has near-zero impact |
 
 ---
 
 ## Power BI Dashboard
 
 ### Page 1: Overview Dashboard
-![Overview Dashboard](images/Power_Bi_Figure_1.png)
+![Overview Dashboard](Dashboard_Images/Power_Bi_Figure_1.png)
 Displays total power generated (66M kW), average wind speed (8 m/s), average efficiency, total power loss (9M kW), and maximum power (3.62K kW). Includes a daily average power trend line and month-wise power generation bar chart with interactive slicers for date range, wind speed, month, and hour.
 
 ### Page 2: Wind Analysis
-![Wind Analysis](images/Power_Bi_Figure_2.png)
+![Wind Analysis](Dashboard_Images/Power_Bi_Figure_2.png)
 Explores the wind-power relationship through four visuals: power output by wind speed (scatter), power output by wind direction (scatter), hour-wise average power generation (bar), and wind speed frequency distribution (histogram).
 
 ### Page 3: Performance Analysis
-![Performance Analysis](images/Power_Bi_Figure_3.png)
+![Performance Analysis](Dashboard_Images/Power_Bi_Figure_3.png)
 Covers turbine efficiency and loss analysis including month-wise efficiency trend, month-wise power loss bar chart, theoretical vs. actual power scatter plot, a table of negative power output events (turbine standby/self-consumption), and a power loss events reference table.
 
 ---
 
 ## Repository Structure
 ```
-wind-turbine-power-analysis/
+Wind-Turbine-Analysis/
 │
-├── data/
-│   ├── raw/                        → original Kaggle dataset (Dataset.csv)
-│   └── processed/                  → cleaned and enriched dataset (Processed_Data.csv)
+├── Dashboard_Images/
+│   ├── Power_Bi_Figure_1.png     → Overview Dashboard screenshot
+│   ├── Power_Bi_Figure_2.png     → Wind Analysis screenshot
+│   └── Power_Bi_Figure_3.png     → Performance Analysis screenshot
 │
-├── notebooks_or_scripts/
-│   └── data_cleaning_analysis.py   → full Python EDA script
+├── Data/
+│   ├── Dataset.csv               → original Kaggle raw dataset
+│   └── Processed_Data.csv        → cleaned and enriched dataset
 │
-├── powerbi/
-│   └── wind_dashboard.pbix         → interactive Power BI dashboard (3 pages)
+├── Notebooks/
+│   ├── data/
+│   │   └── Processed_Data.csv    → processed data copy used by script
+│   ├── images/                   → all Python EDA chart outputs
+│   │   ├── P1.png   (Power Loss Distribution)
+│   │   ├── P2.png   (Wind Speed vs Power Loss)
+│   │   ├── P3.png   (Wind Speed Distribution)
+│   │   ├── P4.png   (Active Power Distribution)
+│   │   ├── P5.png   (Wind Speed vs Active Power)
+│   │   ├── P6.png   (Wind Speed vs Theoretical Power)
+│   │   ├── P7.png   (Actual vs Theoretical Power)
+│   │   ├── P8.png   (Monthly Power Generation)
+│   │   ├── P9.png   (Hourly Average Power)
+│   │   ├── P10.png  (Wind Direction vs Active Power)
+│   │   └── P11.png  (Correlation Matrix)
+│   ├── Wind_Analysis.py          → full Python EDA script
+│   └── Requirement.txt           → Python dependencies
 │
-├── images/                         → all chart outputs (Python + Power BI screenshots)
+├── Power_Bi/
+│   └── Wind_Analysis.pbix        → interactive Power BI dashboard (3 pages)
 │
-├── README.md
-├── requirements.txt
+└── README.md
 ```
-
----
 
 ## How to Reproduce
 
